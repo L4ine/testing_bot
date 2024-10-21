@@ -14,15 +14,17 @@
 
 3. `cp .env.example .env` и отредактируйте по необходимости.
 
-4. Заполните settings.json по [примеру](#пример-settingsjson).
+4. Заполните `src/settings.json` по [примеру](#пример-settingsjson).
 
-5. Если изменяли `deploy/.env`, то отредактируйте `sqlalchemy.url` в `src/db/alembic.ini`.
+5. Создайте пустую папку `versions` в `src/db/migrations/`.
+
+6. Если изменяли `deploy/.env`, то отредактируйте `sqlalchemy.url` в `src/db/alembic.ini`.
 
     Формат: `postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@testing_bot_db/{POSTGRES_DB}`
 
-6. `docker-compose up --build -d`
+7. `docker-compose up --build -d`
 
-7. Выполните команду [для обновления БД](#миграция-в-бд).
+8. Выполните команду [для обновления БД](#миграция-в-бд).
 
 Поздравляю, бот запущен!
 
