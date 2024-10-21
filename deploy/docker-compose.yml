@@ -1,0 +1,27 @@
+services:
+  testing_bot:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: testing_bot
+    restart: on-failure
+    env_file: .env
+    depends_on:
+      - testing_bot_db
+    environment:
+      - TZ=Europe/Moscow
+    volumes:
+      - ../src/db/migrations:/opt/app/db/migrations
+
+  testing_bot_db:
+    container_name: testing_bot_db
+    image: postgres
+    env_file: .env
+    environment:
+      - TZ=Europe/Moscow
+    volumes:
+      - testing_bot_db_data:/var/lib/postgresql/data
+
+volumes:
+  testing_bot_db_data:
+    driver: local
